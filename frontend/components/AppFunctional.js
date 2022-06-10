@@ -1,34 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 // Suggested initial states
-const initialMessage = ''
-const initialEmail = ''
-const initialSteps = 0
-const initialIndex = 4 // the index the "B" is at
+// const initialMessage = ''
+// const initialEmail = ''
+// const initialSteps = 0
+// const initialIndex = 4 
+// the index the "B" is at
 
 export default function AppFunctional(props) {
-  // THE FOLLOWING HELPERS ARE JUST RECOMMENDATIONS.
-  // You can delete them and build your own logic from scratch.
 
-  function getXY() {
-    // It it not necessary to have a state to track the coordinates.
-    // It's enough to know what index the "B" is at, to be able to calculate them.
+  const URL = "http://localhost:9000/api/result"
+
+  const initialState = {
+    x: 2,
+    y: 2,
+    steps: 0,
+    email: '',
+    message: '',
   }
 
-  function getXYMessage() {
-    // It it not necessary to have a state to track the "Coordinates (2, 2)" message for the user.
-    // You can use the `getXY` helper above to obtain the coordinates, and then `getXYMessage`
-    // returns the fully constructed string.
-  }
+  const [state, setState] = useState(initialState)
+
 
   function reset() {
     // Use this helper to reset all states to their initial values.
-  }
-
-  function getNextIndex(direction) {
-    // This helper takes a direction ("left", "up", etc) and calculates what the next index
-    // of the "B" would be. If the move is impossible because we are at the edge of the grid,
-    // this helper should return the current index unchanged.
   }
 
   function move(evt) {
