@@ -33,11 +33,16 @@ export default function AppFunctional(props) {
     // and change any states accordingly.
   }
 
-  function onChange(evt) {
-    // You will need this to update the value of the input.
+  function handleChange(evt) {
+    console.log(state.email)
+    const {value} = evt.target
+    setState({
+      ...state,
+      email: value
+    })
   }
 
-  function onSubmit(evt) {
+  function handleSubmit(evt) {
     // Use a POST request to send a payload to the server.
     evt.preventDefault()
   }
@@ -67,8 +72,8 @@ export default function AppFunctional(props) {
         <button id="down">DOWN</button>
         <button id="reset">reset</button>
       </div>
-      <form onSubmit={onSubmit}>
-        <input id="email" type="email" placeholder="type email" value={state.email} onChange={onChange}></input>
+      <form onSubmit={handleSubmit}>
+        <input id="email" type="email" placeholder="type email" value={state.email} onChange={handleChange} />
         <input id="submit" type="submit"></input>
       </form>
     </div>
