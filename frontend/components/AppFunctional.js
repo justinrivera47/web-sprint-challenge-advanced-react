@@ -39,6 +39,7 @@ export default function AppFunctional(props) {
 
   function onSubmit(evt) {
     // Use a POST request to send a payload to the server.
+    evt.preventDefault()
   }
 
   return (
@@ -66,8 +67,8 @@ export default function AppFunctional(props) {
         <button id="down">DOWN</button>
         <button id="reset">reset</button>
       </div>
-      <form>
-        <input id="email" type="email" placeholder="type email"></input>
+      <form onSubmit={onSubmit}>
+        <input id="email" type="email" placeholder="type email" value={state.email} onChange={onChange}></input>
         <input id="submit" type="submit"></input>
       </form>
     </div>
