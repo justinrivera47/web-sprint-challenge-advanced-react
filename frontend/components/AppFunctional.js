@@ -13,6 +13,7 @@ export default function AppFunctional(props) {
   const URL = "http://localhost:9000/api/result"
 
   const initialState = {
+    index: [0, 1, 2, 3, 4, 5, 6, 7, 8],
     x: 2,
     y: 2,
     steps: 0,
@@ -48,7 +49,7 @@ export default function AppFunctional(props) {
       </div>
       <div id="grid">
         {
-          [0, 1, 2, 3, 4, 5, 6, 7, 8].map(idx => (
+          state.index.map(idx => (
             <div key={idx} className={`square${idx === 4 ? ' active' : ''}`}>
               {idx === 4 ? 'B' : null}
             </div>
@@ -56,7 +57,7 @@ export default function AppFunctional(props) {
         }
       </div>
       <div className="info">
-        <h3 id="message"></h3>
+        <h3 id="message">{state.message}</h3>
       </div>
       <div id="keypad">
         <button id="left">LEFT</button>
