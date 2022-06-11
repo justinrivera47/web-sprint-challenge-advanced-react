@@ -1,19 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-// Suggested initial states
-// const initialMessage = ''
-// const initialEmail = ''
-// const initialSteps = 0
-// const initialIndex = 4 
-// the index the "B" is at
-
 export default function AppFunctional(props) {
 
   const URL = "http://localhost:9000/api/result"
 
   const initialState = {
-    index: [0, 1, 2, 3, 4, 5, 6, 7, 8],
     x: 2,
     y: 2,
     steps: 0,
@@ -25,12 +17,17 @@ export default function AppFunctional(props) {
 
 
   function reset() {
-    // Use this helper to reset all states to their initial values.
+    setState({
+      x: 2,
+      y: 2,
+      steps: 0,
+      email: '',
+      message: '',
+    })
   }
 
   function move(evt) {
-    // This event handler can use the helper above to obtain a new index for the "B",
-    // and change any states accordingly.
+    
   }
 
   function handleChange(evt) {
@@ -50,17 +47,26 @@ export default function AppFunctional(props) {
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
-        <h3 id="coordinates">Coordinates (2, 2)</h3>
+        <h3 id="coordinates">Coordinates ({state.x}, {state.y})</h3>
         <h3 id="steps">You moved 0 times</h3>
       </div>
       <div id="grid">
-        {
+        {/* {
           state.index.map(idx => (
             <div key={idx} className={`square${idx === 4 ? ' active' : ''}`}>
               {idx === 4 ? 'B' : null}
             </div>
           ))
-        }
+        } */}
+          {state.x===1 && state.y===1?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===2 && state.y===1?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===3 && state.y===1?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===1 && state.y===2?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===2 && state.y===2?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===3 && state.y===2?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===1 && state.y===3?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===2 && state.y===3?<div className="square active">B</div>:<div className="square"></div>}
+          {state.x===3 && state.y===3?<div className="square active">B</div>:<div className="square"></div>}
       </div>
       <div className="info">
         <h3 id="message">{state.message}</h3>
@@ -70,7 +76,7 @@ export default function AppFunctional(props) {
         <button id="up">UP</button>
         <button id="right">RIGHT</button>
         <button id="down">DOWN</button>
-        <button id="reset">reset</button>
+        <button id="reset" onClick={reset}>reset</button>
       </div>
       <form onSubmit={handleSubmit}>
         <input id="email" type="email" placeholder="type email" value={state.email} onChange={handleChange} />
