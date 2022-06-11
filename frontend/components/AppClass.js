@@ -10,7 +10,7 @@ steps: 0,
 email: '',
 tooFar: false,
 arr: [],
-message:''
+message:'justin'
 }
 
 export default class AppClass extends React.Component {
@@ -45,7 +45,7 @@ export default class AppClass extends React.Component {
           {this.state.x===3 && this.state.y===3?<div className="square active">B</div>:<div className="square"></div>}
         </div>
         <div className="info">
-          <h3 id="message"></h3>
+          <h3 id="message">{this.state.message}</h3>
         </div>
         <div id="keypad">
           <button id="left">LEFT</button>
