@@ -15,6 +15,23 @@ export default function AppFunctional(props) {
 
   const [state, setState] = useState(initialState)
 
+  const postMessage = () => {
+    axios.post(URL, { "x": state.x, "y": state.y, "steps": state.steps, "email": state.email})
+    .then((res) => {
+      setState({
+        ...state,
+        message: res.data.message,
+        email: ''
+      })
+      // this.resetForm()
+    })
+    .catch((err) => {
+      setState({
+        ...state,
+        message: err.response.data.message
+      })
+    })
+  }
 
   function reset() {
     setState({
@@ -102,6 +119,7 @@ export default function AppFunctional(props) {
   function handleSubmit(evt) {
     // Use a POST request to send a payload to the server.
     evt.preventDefault()
+    postMessage()
   }
 
   return (
