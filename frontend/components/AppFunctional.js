@@ -26,6 +26,22 @@ export default function AppFunctional(props) {
     })
   }
 
+  const leftMove = () => {
+    if(state.x === 1){
+      setState({
+        ...state,
+        message: "You can't go left",
+      })
+      } else{
+      setState({
+        ...state,
+        message: "",
+        x: state.x - 1,
+        steps: state.steps + 1
+      })
+    }
+  }
+
   const rightMove = () => {
     if(state.x === 3){
       setState({
@@ -116,7 +132,7 @@ export default function AppFunctional(props) {
         <h3 id="message">{state.message}</h3>
       </div>
       <div id="keypad">
-        <button id="left">LEFT</button>
+        <button id="left" onClick={leftMove}>LEFT</button>
         <button id="up" onClick={upMove}>UP</button>
         <button id="right" onClick={rightMove}>RIGHT</button>
         <button id="down" onClick={downMove}>DOWN</button>
