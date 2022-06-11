@@ -10,7 +10,7 @@ steps: 0,
 email: '',
 tooFar: false,
 arr: [],
-message:'justin'
+message:''
 }
 
 export default class AppClass extends React.Component {
@@ -23,8 +23,8 @@ export default class AppClass extends React.Component {
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">Coordinates (2, 2)</h3>
-          <h3 id="steps">You moved 0 times</h3>
+          <h3 id="coordinates">Coordinates ({this.state.x}, {this.state.y})</h3>
+          <h3 id="steps">{this.state.steps === 1 ? `You moved ${this.state.steps} time` : `You moved ${this.state.steps} times`}</h3>
         </div>
         <div id="grid">
           {/* {
