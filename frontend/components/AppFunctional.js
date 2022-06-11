@@ -26,6 +26,22 @@ export default function AppFunctional(props) {
     })
   }
 
+  const rightMove = () => {
+    if(state.x === 3){
+      setState({
+        ...state,
+        message: "You can't go right",
+      })
+      } else{
+      setState({
+        ...state,
+        message: "",
+        x: state.x + 1,
+        steps: state.steps + 1
+      })
+    }
+  }
+
   const upMove = () => {
     if(state.y === 1){
       setState({
@@ -42,8 +58,20 @@ export default function AppFunctional(props) {
     }
   }
 
-  function move(evt) {
-    
+  const downMove = () => {
+    if(state.y === 3){
+      setState({
+        ...state, 
+        message: "You can't go down",
+      })
+      } else{
+      setState({
+        ...state,
+        message: "",
+        y: state.y + 1,
+        steps: state.steps + 1
+      })
+    }
   }
 
   function handleChange(evt) {
@@ -90,8 +118,8 @@ export default function AppFunctional(props) {
       <div id="keypad">
         <button id="left">LEFT</button>
         <button id="up" onClick={upMove}>UP</button>
-        <button id="right">RIGHT</button>
-        <button id="down">DOWN</button>
+        <button id="right" onClick={rightMove}>RIGHT</button>
+        <button id="down" onClick={downMove}>DOWN</button>
         <button id="reset" onClick={reset}>reset</button>
       </div>
       <form onSubmit={handleSubmit}>
