@@ -108,7 +108,6 @@ export default function AppFunctional(props) {
   }
 
   function handleChange(evt) {
-    console.log(state.email)
     const {value} = evt.target
     setState({
       ...state,

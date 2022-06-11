@@ -1,16 +1,16 @@
 import React from 'react'
+import axios from 'axios'
 
-// Suggested initial states
-const initialMessage = ''
-const initialEmail = ''
-const initialSteps = 0
-const initialIndex = 4 // the index the "B" is at
 
-const initialState = {
-  message: initialMessage,
-  email: initialEmail,
-  index: initialIndex,
-  steps: initialSteps,
+const URL = "http://localhost:9000/api/result"
+const initialState ={
+x: 2,
+y: 2,
+steps: 0,
+email: '',
+tooFar: false,
+arr: [],
+message:''
 }
 
 export default class AppClass extends React.Component {
