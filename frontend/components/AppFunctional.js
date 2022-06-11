@@ -26,6 +26,22 @@ export default function AppFunctional(props) {
     })
   }
 
+  const upMove = () => {
+    if(state.y === 1){
+      setState({
+        ...state,
+        message: "You can't go up",
+      })
+      } else{
+      setState({
+        ...state,
+        message: "",
+        y: state.y - 1,
+        steps: state.steps + 1
+      })
+    }
+  }
+
   function move(evt) {
     
   }
@@ -73,7 +89,7 @@ export default function AppFunctional(props) {
       </div>
       <div id="keypad">
         <button id="left">LEFT</button>
-        <button id="up">UP</button>
+        <button id="up" onClick={upMove}>UP</button>
         <button id="right">RIGHT</button>
         <button id="down">DOWN</button>
         <button id="reset" onClick={reset}>reset</button>
