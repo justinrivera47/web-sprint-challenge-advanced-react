@@ -55,14 +55,6 @@ export default class AppClass extends React.Component {
     })
   }
 
-  onChange = (e) => {
-    const {value} = e.target
-    this.setState({
-      ...this.state,
-      email: value
-    })
-  }
-
   moveLeft = () => {
     if(this.state.x === 1){
       this.setState({
