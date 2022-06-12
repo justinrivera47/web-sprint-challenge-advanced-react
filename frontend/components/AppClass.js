@@ -16,6 +16,14 @@ message:''
 export default class AppClass extends React.Component {
   state = initialState
 
+  onChange = (e) => {
+    const {value} = e.target
+    this.setState({
+      ...this.state,
+      email: value
+    })
+  }
+
 
 
   render() {
@@ -55,7 +63,7 @@ export default class AppClass extends React.Component {
           <button id="reset">reset</button>
         </div>
         <form>
-          <input id="email" type="email" placeholder="type email"></input>
+          <input id="email" type="email" placeholder="type email" value={this.state.email} onChange={this.onChange}></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>
