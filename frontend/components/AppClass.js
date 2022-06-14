@@ -55,87 +55,90 @@ export default class AppClass extends React.Component {
     })
   }
 
-  moveLeft = () => {
-    if(this.state.x === 1){
-      this.setState({
-        ...this.state,
-        tooFar: true,
-        message: "You can't go left"
-      })
-    } else {
-      this.setState({
-        ...this.state,
-        message: "",
-        x: this.state.x - 1,
-        tooFar: false,
-        steps: this.state.steps + 1
-      })
+  move = (e) => {
+    const direction = e.target.id
+    switch (direction) {
+      case "left":
+        if(this.state.x === 1){
+          this.setState({
+            ...this.state,
+            tooFar: true,
+            message: "You can't go left"
+          })
+        } else {
+          this.setState({
+            ...this.state,
+            message: "",
+            x: this.state.x - 1,
+            tooFar: false,
+            steps: this.state.steps + 1
+          })
+        }
+        break;
+      case "right":
+        if(this.state.x === 3){
+          this.setState({
+            ...this.state,
+            tooFar: true,
+            message: "You can't go right"
+          })
+        } else {
+          this.setState({
+            ...this.state,
+            message: "",
+            x: this.state.x + 1,
+            tooFar: false,
+            steps: this.state.steps + 1,
+          })
+        }
+        break;
+      case "up":
+        if(this.state.y === 1){
+          this.setState({
+            ...this.state,
+            tooFar: true,
+            message: "You can't go up"
+          })
+        } else {
+          this.setState({
+            ...this.state,
+            message: "",
+            y: this.state.y - 1,
+            tooFar: false,
+            steps: this.state.steps + 1
+          })
+        }
+        break;
+      case "down":
+        if(this.state.y === 3){
+          this.setState({
+            ...this.state,
+            tooFar: true,
+            message: "You can't go down"
+          })
+        } else {
+          this.setState({
+            ...this.state,
+            message: "",
+            y: this.state.y + 1,
+            tooFar: false,
+            steps: this.state.steps + 1
+          })
+        }
+        break;
+      case "reset":
+        this.setState({
+          x: 2,
+          y: 2,
+          steps: 0,
+          email: '',
+          tooFar: false,
+          message:''
+        })
+        break;
+      default: 
+        break
     }
-  }
-
-  moveUp = () => {
-    if(this.state.y === 1){
-      this.setState({
-        ...this.state,
-        tooFar: true,
-        message: "You can't go up"
-      })
-    } else {
-      this.setState({
-        ...this.state,
-        message: "",
-        y: this.state.y - 1,
-        tooFar: false,
-        steps: this.state.steps + 1
-      })
-    }
-  }
-
-  moveRight = () => {
-    if(this.state.x === 3){
-      this.setState({
-        ...this.state,
-        tooFar: true,
-        message: "You can't go right"
-      })
-    } else {
-      this.setState({
-        ...this.state,
-        message: "",
-        x: this.state.x + 1,
-        tooFar: false,
-        steps: this.state.steps + 1,
-      })
-    }
-  }
-
-  moveDown = () => {
-    if(this.state.y === 3){
-      this.setState({
-        ...this.state,
-        tooFar: true,
-        message: "You can't go down"
-      })
-    } else {
-      this.setState({
-        ...this.state,
-        message: "",
-        y: this.state.y + 1,
-        tooFar: false,
-        steps: this.state.steps + 1
-      })
-    }
-  }
-
-  reset = () => {
-    this.setState({
-      x: 2,
-      y: 2,
-      steps: 0,
-      email: '',
-      tooFar: false,
-      message:''
-    })
   }
 
   render() {
@@ -168,11 +171,11 @@ export default class AppClass extends React.Component {
           <h3 id="message">{this.state.message}</h3>
         </div>
         <div id="keypad">
-          <button id="left" onClick={this.moveLeft}>LEFT</button>
-          <button id="up" onClick={this.moveUp}>UP</button>
-          <button id="right" onClick={this.moveRight}>RIGHT</button>
-          <button id="down" onClick={this.moveDown}>DOWN</button>
-          <button id="reset" onClick={this.reset}>reset</button>
+          <button id="left" onClick={this.move}>LEFT</button>
+          <button id="up" onClick={this.move}>UP</button>
+          <button id="right" onClick={this.move}>RIGHT</button>
+          <button id="down" onClick={this.move}>DOWN</button>
+          <button id="reset" onClick={this.move}>reset</button>
         </div>
         <form onSubmit={this.onFormSubmit}>
           <input id="email" type="email" placeholder="type email" value={this.state.email} onChange={this.onChange}></input>
