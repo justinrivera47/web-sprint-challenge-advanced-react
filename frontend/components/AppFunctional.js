@@ -33,77 +33,89 @@ export default function AppFunctional(props) {
     })
   }
 
-  function reset() {
-    setState({
-      x: 2,
-      y: 2,
-      steps: 0,
-      email: '',
-      message: '',
-    })
-  }
-
-  const leftMove = () => {
-    if(state.x === 1){
-      setState({
-        ...state,
-        message: "You can't go left",
-      })
-      } else{
-      setState({
-        ...state,
-        message: "",
-        x: state.x - 1,
-        steps: state.steps + 1
-      })
-    }
-  }
-
-  const rightMove = () => {
-    if(state.x === 3){
-      setState({
-        ...state,
-        message: "You can't go right",
-      })
-      } else{
-      setState({
-        ...state,
-        message: "",
-        x: state.x + 1,
-        steps: state.steps + 1
-      })
-    }
-  }
-
-  const upMove = () => {
-    if(state.y === 1){
-      setState({
-        ...state,
-        message: "You can't go up",
-      })
-      } else{
-      setState({
-        ...state,
-        message: "",
-        y: state.y - 1,
-        steps: state.steps + 1
-      })
-    }
-  }
-
-  const downMove = () => {
-    if(state.y === 3){
-      setState({
-        ...state, 
-        message: "You can't go down",
-      })
-      } else{
-      setState({
-        ...state,
-        message: "",
-        y: state.y + 1,
-        steps: state.steps + 1
-      })
+  const move = (e) => {
+    const direction = e.target.id
+    switch (direction) {
+      case "left":
+        if(state.x === 1){
+          setState({
+            ...state,
+            tooFar: true,
+            message: "You can't go left"
+          })
+        } else {
+          setState({
+            ...state,
+            message: "",
+            x: state.x - 1,
+            tooFar: false,
+            steps: state.steps + 1
+          })
+        }
+        break;
+      case "right":
+        if(state.x === 3){
+          setState({
+            ...state,
+            tooFar: true,
+            message: "You can't go right"
+          })
+        } else {
+          setState({
+            ...state,
+            message: "",
+            x: state.x + 1,
+            tooFar: false,
+            steps: state.steps + 1,
+          })
+        }
+        break;
+      case "up":
+        if(state.y === 1){
+          setState({
+            ...state,
+            tooFar: true,
+            message: "You can't go up"
+          })
+        } else {
+          setState({
+            ...state,
+            message: "",
+            y: state.y - 1,
+            tooFar: false,
+            steps: state.steps + 1
+          })
+        }
+        break;
+      case "down":
+        if(state.y === 3){
+          setState({
+            ...state,
+            tooFar: true,
+            message: "You can't go down"
+          })
+        } else {
+          setState({
+            ...state,
+            message: "",
+            y: state.y + 1,
+            tooFar: false,
+            steps: state.steps + 1
+          })
+        }
+        break;
+      case "reset":
+        setState({
+          x: 2,
+          y: 2,
+          steps: 0,
+          email: '',
+          tooFar: false,
+          message:''
+        })
+        break;
+      default: 
+        break
     }
   }
 
@@ -149,11 +161,11 @@ export default function AppFunctional(props) {
         <h3 id="message">{state.message}</h3>
       </div>
       <div id="keypad">
-        <button id="left" onClick={leftMove}>LEFT</button>
-        <button id="up" onClick={upMove}>UP</button>
-        <button id="right" onClick={rightMove}>RIGHT</button>
-        <button id="down" onClick={downMove}>DOWN</button>
-        <button id="reset" onClick={reset}>reset</button>
+        <button id="left" onClick={move}>LEFT</button>
+        <button id="up" onClick={move}>UP</button>
+        <button id="right" onClick={move}>RIGHT</button>
+        <button id="down" onClick={move}>DOWN</button>
+        <button id="reset" onClick={move}>reset</button>
       </div>
       <form onSubmit={handleSubmit}>
         <input id="email" type="email" placeholder="type email" value={state.email} onChange={handleChange} />
